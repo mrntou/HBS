@@ -1,0 +1,94 @@
+{% extends '__base.html' %}
+{% block content %}
+
+
+<style>
+    #maxim {
+        font-size: 22pt;
+    }
+
+    
+  body {    
+    
+            background-image:linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)), url("{{url_for('static', filename='b1.png')}}");
+           
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+</style>
+
+<body class="d-flex h-100 text-center text-bg-dark">
+
+    <main class="px-3">
+        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+
+
+
+        <h1>Ayarlar</h1>
+
+
+
+
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <label>Her gün gönderilecek söz/hadis/ayet sayısı</label>
+            <div class=" col-2   mx-auto form-group">
+                {{ form.maxim_number(class='form-control') }}
+            </div>
+
+
+            <br>
+
+            {{ form.submit(class='btn btn-primary') }}
+
+        </form>
+        <br>
+        <br>
+
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div id="typed-strings">
+            Söz başarıyla eklendi!
+            <div>
+                <h2>{{ message }}</h2>
+                
+            </div>
+
+        </div>
+
+        <p class='lead text-success'>
+
+            <span id="typed"></span>
+        </p>
+
+       
+        <script>
+            var typed = new Typed('#typed', {
+                stringsElement: '#typed-strings',
+                typeSpeed: 10,
+            });
+        </script>
+
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+
+
+
+    </main>
+</body>
+
+
+
+
+
+
+
+{% endblock %}

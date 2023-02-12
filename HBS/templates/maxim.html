@@ -1,0 +1,141 @@
+{% extends '__base.html' %}
+{% block content %}
+
+
+<style>
+    #maxim {
+        font-size: 22pt;
+    }
+
+    .form-group {
+        margin: 10px 10px;
+    }
+    .but{
+        margin:10px 10px;
+    }
+
+    .trans{
+        background: transparent;
+        color:cyan;
+    }
+
+     #maxim {
+    font-size: 22pt;
+  }
+
+  body {    
+    
+            background-image:linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)), url("{{url_for('static', filename='b1.png')}}")
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+  .badge{
+    font-size: 22pt;
+  }
+
+  
+   
+</style>
+
+<body class="d-flex h-100 text-center text-bg-dark">
+
+    <main class="px-3">
+        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+
+
+
+        <h2>Veritabanina Söz/Ayet/Hadis ekle</h2>
+
+
+
+
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                <label>Söz/Ayet/Hadis</label>
+                {{ form.maxim(class='form-control bg-dark text-success', rows=7) }}
+            </div>
+
+            <div class="form-group">
+                <label>Kategori</label>
+                {{ form.select(class='form-select bg-dark text-success') }}
+            </div>
+
+            <div class="form-group">
+                <label>Soyleyen</label>
+                <br>
+                <small style="color:gray; font-size: 8pt;"> Not: Eğer Ayet veya Hadis seçeniği girildiğinde sözü
+                    söyleyer kısım boş bırakılır!</small>
+                {{ form.author(class='form-control bg-dark text-success') }}
+            </div>
+
+            <div class="form-group">
+                {{form.show()}} Veritabanında Göster
+            </div>
+
+            <br>
+            <div class="d-grid gap-2 but">
+                {{ form.submit(class='btn btn-primary') }}
+
+
+            </div>
+
+        </form>
+        <br>
+        <br>
+
+        {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div id="typed-strings">
+          
+            <div>
+            
+                <small>Bir tane daha eklemek istermisin ?</small><br>
+                <small>Limit: {{user.daily_limit}}/{{user.tasks_today}}</small>
+               
+            </div>
+
+        </div>
+
+        <br>
+        <p class='lead text-success'>
+
+            <span id="typed"></span>
+        </p>
+
+      
+
+      <script>
+        Swal.fire({
+            title: 'Başarılı!',
+            text: '{{message}}',
+            icon: '{{category}}',
+            confirmButtonText: 'Tamam'
+        })
+    </script>
+
+        
+
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+
+
+
+    </main>
+</body>
+
+
+
+
+
+
+
+{% endblock %}

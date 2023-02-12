@@ -1,0 +1,1 @@
+{"SECRET_KEY": "myawesomesecretkey", "SQLALCHEMY_DATABASE_URI": "sqlite:///data.db", "SQLALCHEMY_TRACK_MODIFICATION": false, "BACKGROUND_IMAGE": "b2.png", "MAXIM_NUMBER": 1}

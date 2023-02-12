@@ -1,0 +1,89 @@
+{% extends '__base.html' %}
+{% block content %}
+
+
+<style>
+  #maxim {
+    font-size: 22pt;
+  }
+
+  body {    
+    
+            background-image:linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url("{{url_for('static', filename='b1.png')}}");
+           
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+  .badge{
+    font-size: 22pt;
+  }
+
+
+
+</style>
+<body class="d-flex h-100 text-center text-bg-dark">
+
+<main class="px-3">
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <h1>Merhaba {{ current_user.username | title }}</h1>
+ 
+
+
+  <div id="typed-strings">
+    <p class="fadeIn lead">Merhabalar her gün yeni bir özlü söz veya hadis öğrenmek istermisin?</p>
+    <p>Ekibimize sende katıl</p>
+    <p>Söz ekle butonuna tıklayarak veritabanına katkıda bulunabilirsiniz!</p>
+    <p>Eklenilen sözler <b>200-300</b> arası olduğunda sistem aktif olacaktir</p>
+    <p>Hemen araştırmaya başla!</p>
+    <p class="lead">
+      Veritabanında bulunan veri sayısı
+      <br>
+      
+      <a  href="#"  class="rollerLeft btn btn-lg btn-light fw-bold border-white bg-white">
+        
+        <span id='maxim'>{{ maxims.all() | length }}</span>
+    
+    
+      </a>
+      <br>
+      <small class="">
+        <span class="text-warning">Ayet: {{maxims.filter_by(category='1').all() | length}}</span>
+        <span class="text-info">Hadis: {{maxims.filter_by(category='2').all() | length}}</span>
+        <span class="text-success">Söz: {{maxims.filter_by(category='3').all() | length}}</span>
+
+      </small>
+      <br>
+      Hedef: 200-300
+      
+    </p>
+
+    
+  </div>
+
+  <p class='lead'>
+    <span id="typed"></span>
+  </p>
+
+  
+
+
+</main>
+
+</body>
+
+
+
+<script>
+  var typed = new Typed('#typed', {
+    stringsElement: '#typed-strings',
+    typeSpeed: 5,
+  });
+</script>
+
+
+
+
+{% endblock %}
